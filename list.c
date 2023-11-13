@@ -38,11 +38,17 @@ creation d'une cellule avec ces valeurs
 retour de notre liste*/
 
 list* add_val_to_head(list *mylist, int nb_lvl, int val){
-    cell* mycell = add_val_cell(nb_lvl, val);            /* voir si demander a l'utilisateur nb_lvl */
-    cell* temp;
-    for(int i = nb_lvl-1; i >= 0; i--){
+    printf("test");
+    cell* mycell = add_val_cell(nb_lvl, val);
+    printf("test2");/* voir si demander a l'utilisateur nb_lvl */
+    for(int i = 0; i <= mycell->nb_lvl-1; ++i){
         printf("tu est la \n");
-        if (mylist->heads[i] == NULL){
+        mycell->next[i] = mylist->heads[i];
+        mylist->heads[i] = mycell;
+
+
+
+        /*if (mylist->heads[i] == NULL){
             printf("ici ; ");
             mylist->heads[i] = mycell;
             printf("null : %d\n",mylist->heads[i]->value);
@@ -53,7 +59,8 @@ list* add_val_to_head(list *mylist, int nb_lvl, int val){
             mylist->heads[i] = mycell;
             mycell->next[i] = temp;
             printf("avec val : %d\n",mylist->heads[i]->value);
-        }
+        }*/
+
     }
     return mylist;
 }
@@ -62,10 +69,10 @@ list* add_val_to_head(list *mylist, int nb_lvl, int val){
 void print_lvl_list(list* mylist, int nb_lvl){
     cell * tmp;
     if (mylist->heads[0] == NULL){
-        printf("[list head_%d @-]--> NULL",nb_lvl-1);
+        printf("[list head_%d @-]--> NULL",nb_lvl);
     }
     tmp = mylist->heads[nb_lvl];
-    printf("[list head_%d @-]-->",nb_lvl-1);
+    printf("[list head_%d @-]-->",nb_lvl);
     while(tmp != NULL){
         printf("[ %d|@- ]-->",tmp->value);
         tmp = tmp->next[nb_lvl-1];
@@ -79,13 +86,13 @@ void print_all_list(list* mylist){
     cell * tmp;
     if (mylist->heads[0] == NULL){
         for (int i = 0; i < mylist->max_lvl; i++){
-            printf("[list head_%d @-]--> NULL",i);
+            printf("[list head_%d @-]--> NULL",i+1);
         }
         return;
     }
     for (int i = 0; i < mylist->max_lvl; i++){
         tmp = mylist->heads[i];
-        printf("[list head_%d @-]-->",i);
+        printf("[list head_%d @-]-->",i+1);
         while(tmp != NULL){
             printf("[ %d|@- ]-->",tmp->value);
             tmp = tmp->next[i];
