@@ -64,10 +64,10 @@ list* add_val_to_head(list *mylist, int nb_lvl, int val){
 
 void print_lvl_list(list* mylist, int nb_lvl){
     cell * tmp = mylist->heads[nb_lvl];
-    printf("[list head_%d @-]-->",nb_lvl);
+    printf("[list head_%d @-]-->",nb_lvl+1);
     while(tmp != NULL){
         printf("[ %d|@- ]-->",tmp->value);
-        tmp = tmp->next[nb_lvl-1];
+        tmp = tmp->next[nb_lvl];
     }
     printf(" NULL\n");
     return;
@@ -75,6 +75,7 @@ void print_lvl_list(list* mylist, int nb_lvl){
 
 
 void print_all_list(list* mylist){
+    cell * tmp;
     for (int i = 0; i < mylist->max_lvl; i++){
         print_lvl_list(mylist, i);
     }
