@@ -22,7 +22,6 @@ list* create_empty_list(int nb_lvl){                               /* voir si de
     for(int i=0; i<=nb_lvl; i++){
         new_list->heads[i] = NULL;
     }
-    printf("liste cree\n");
     return new_list;
 }
 
@@ -38,11 +37,8 @@ creation d'une cellule avec ces valeurs
 retour de notre liste*/
 
 list* add_val_to_head(list *mylist, int nb_lvl, int val){
-    printf("test");
-    cell* mycell = add_val_cell(nb_lvl, val);
-    printf("test2");/* voir si demander a l'utilisateur nb_lvl */
+    cell* mycell = add_val_cell(nb_lvl, val);                      /* voir si demander a l'utilisateur nb_lvl */
     for(int i = 0; i <= mycell->nb_lvl-1; ++i){
-        printf("tu est la \n");
         mycell->next[i] = mylist->heads[i];
         mylist->heads[i] = mycell;
 
@@ -67,11 +63,7 @@ list* add_val_to_head(list *mylist, int nb_lvl, int val){
 
 
 void print_lvl_list(list* mylist, int nb_lvl){
-    cell * tmp;
-    if (mylist->heads[0] == NULL){
-        printf("[list head_%d @-]--> NULL",nb_lvl);
-    }
-    tmp = mylist->heads[nb_lvl];
+    cell * tmp = mylist->heads[nb_lvl];
     printf("[list head_%d @-]-->",nb_lvl);
     while(tmp != NULL){
         printf("[ %d|@- ]-->",tmp->value);
@@ -83,21 +75,8 @@ void print_lvl_list(list* mylist, int nb_lvl){
 
 
 void print_all_list(list* mylist){
-    cell * tmp;
-    if (mylist->heads[0] == NULL){
-        for (int i = 0; i < mylist->max_lvl; i++){
-            printf("[list head_%d @-]--> NULL",i+1);
-        }
-        return;
-    }
     for (int i = 0; i < mylist->max_lvl; i++){
-        tmp = mylist->heads[i];
-        printf("[list head_%d @-]-->",i+1);
-        while(tmp != NULL){
-            printf("[ %d|@- ]-->",tmp->value);
-            tmp = tmp->next[i];
-        }
-        printf(" NULL\n");
+        print_lvl_list(mylist, i);
     }
     return;
 }
