@@ -5,7 +5,7 @@
 
 int main() {
     list * mylist = create_empty_list(4);
-    mylist = add_val_to_head(mylist,1,1);
+    mylist = add_val_to_head(mylist,3,1);
 
     mylist = add_val_to_head(mylist,2,2);
 

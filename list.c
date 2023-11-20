@@ -65,11 +65,24 @@ list* add_val_to_head(list *mylist, int nb_lvl, int val){
 void print_lvl_list(list* mylist, int nb_lvl){
     cell * tmp = mylist->heads[nb_lvl];
     printf("[list head_%d @-]-->",nb_lvl+1);
+    //cell * tmp2 = mylist->heads[0];
+    //int i = 0;
     while(tmp != NULL){
-        printf("[ %d|@- ]-->",tmp->value);
-        tmp = tmp->next[nb_lvl];
+        if (tmp->value == tmp2->value){
+            printf("[ %d|@- ]-->",tmp->value);
+            tmp = tmp->next[nb_lvl];
+            //tmp2->value = mylist->heads[0]->value-1;
+            //tmp2->value -=1;
+        }
+        else{
+            printf("non\n");
+            //tmp2->value -=1;
+            //return;
+        }
+
     }
     printf(" NULL\n");
+    //tmp2 = mylist->heads[0];
     return;
 }
 
