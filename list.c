@@ -42,8 +42,6 @@ list* add_val_to_head(list *mylist, int nb_lvl, int val){
         mycell->next[i] = mylist->heads[i];
         mylist->heads[i] = mycell;
 
-
-
         /*if (mylist->heads[i] == NULL){
             printf("ici ; ");
             mylist->heads[i] = mycell;
@@ -74,9 +72,8 @@ void print_lvl_list(list* mylist, int nb_lvl){
         }
         else{
             printf("-----------");
-            tmp2 = tmp2->next[0];
         }
-
+        tmp2 = tmp2->next[0];
     }
     printf(">NULL\n");
 }
@@ -88,4 +85,13 @@ void print_all_list(list* mylist){
         print_lvl_list(mylist, i);
     }
     return;
+}
+
+void tri_liste_croisant(list *mylist, cell *newcell){
+    cell *tmp = newcell;
+
+
+
+
+
 }
