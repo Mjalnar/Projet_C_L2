@@ -19,7 +19,7 @@ list* create_empty_list(int nb_lvl){                               /* voir si de
     list* new_list = (list*) malloc(sizeof(list));
     new_list->max_lvl = nb_lvl;
     new_list->heads = (cell**) malloc(sizeof(cell*)*nb_lvl);
-    for(int i=0; i<=nb_lvl; i++){
+    for(int i=0; i<nb_lvl; i++){
         new_list->heads[i] = NULL;
     }
     return new_list;
@@ -37,24 +37,10 @@ creation d'une cellule avec ces valeurs
 retour de notre liste*/
 
 list* add_val_to_head(list *mylist, int nb_lvl, int val){
-    cell* mycell = add_val_cell(nb_lvl, val);                      /* voir si demander a l'utilisateur nb_lvl */
+    cell* mycell = add_val_cell(nb_lvl, val);                  /* voir si demander a l'utilisateur nb_lvl */
     for(int i = 0; i <= mycell->nb_lvl-1; ++i){
         mycell->next[i] = mylist->heads[i];
         mylist->heads[i] = mycell;
-
-        /*if (mylist->heads[i] == NULL){
-            printf("ici ; ");
-            mylist->heads[i] = mycell;
-            printf("null : %d\n",mylist->heads[i]->value);
-        }
-        else{
-            printf("la ; ");
-            temp = mylist->heads[i];
-            mylist->heads[i] = mycell;
-            mycell->next[i] = temp;
-            printf("avec val : %d\n",mylist->heads[i]->value);
-        }*/
-
     }
     return mylist;
 }
@@ -89,9 +75,5 @@ void print_all_list(list* mylist){
 
 void tri_liste_croisant(list *mylist, cell *newcell){
     cell *tmp = newcell;
-
-
-
-
 
 }

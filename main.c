@@ -5,18 +5,23 @@
 
 int main() {
     printf("commence\n");
-    list * mylist = create_empty_list(7);
+    list * mylist = create_empty_list(3);
+    print_all_list(mylist);
     printf("pas de bug ici 0\n");
-    mylist = add_val_to_head(mylist,3,1);
+    mylist = add_val_to_head(mylist,1,1);
     printf("pas de bug ici 1\n");
     mylist = add_val_to_head(mylist,2,2);
     printf("pas de bug ici 2\n");
-    mylist = add_val_to_head(mylist,3,3);
+    mylist = add_val_to_head(mylist,1,3);
     printf("pas de bug ici 3\n");
-    mylist = add_val_to_head(mylist,4,4);
-    printf("pas de bug ici 4\n");
-    mylist = add_val_to_head(mylist, 5, 5);
-
+    mylist = add_val_to_head(mylist,3,4);
+    printf("pas de bug ici 5\n");
+    mylist = add_val_to_head(mylist, 1, 5);
+    printf("pas de bug ici 6\n");
+    mylist = add_val_to_head(mylist, 2, 6);
+    printf("pas de bug ici 7\n");
+    mylist = add_val_to_head(mylist, 1, 7);
+    printf("pas de bug ici 8\n");
 
     printf("finis la\n");
 
