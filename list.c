@@ -6,6 +6,7 @@
 #include "cell.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 /*fonction création de list et initialisé à null
 pointeur list
@@ -74,6 +75,44 @@ void print_all_list(list* mylist){
 }
 
 void tri_liste_croisant(list *mylist, cell *newcell){
-    cell *tmp = newcell;
 
+    int lvl = mylist->max_lvl;
+    cell **cur = mylist->heads;
+
+    while(lvl >= 0){
+        cell *temp = cur[lvl];
+        if(temp->value < newcell->value){
+            lvl--;
+        }
+        else if(temp->value > newcell->value) {
+                lvl--;
+                cur = temp->next;
+        }
+            else{
+                lvl = -1;
+            }
+    }
+    
+}
+
+
+list* creer_liste_pour_n(int n){
+    printf("\noui");
+    list* mylist = create_empty_list(n);
+    printf("\n3");
+
+    int taille_liste = pow(2,n)-1;
+    int nb_niv = n;
+
+    printf("\ntaille liste = %d", taille_liste);
+    for(int i = taille_liste; i>0; i--){
+
+        printf("\nattente numero %d", i);
+
+        mylist = add_val_to_head(mylist,nb_niv,i);
+
+        printf("\neffectué numero %d", i);
+    }
+    printf("\n4");
+    return mylist;
 }

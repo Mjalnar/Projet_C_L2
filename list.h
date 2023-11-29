@@ -16,6 +16,7 @@ list* create_empty_list(int nb_lvl);
 list* add_val_to_head(list *mylist, int nb_lvl, int val);
 void print_all_list(list* mylist);
 void print_lvl_list(list* mylist, int nb_lvl);
+list* creer_liste_pour_n(int n);
 
 
 #endif //PROJET_LIST_H
