@@ -4,13 +4,27 @@
 #include <stdlib.h>
 
 int main() {
+    list *mylist = create_empty_list(5);
+    mylist = tri_liste_croisant(mylist,2,31);
+    mylist = tri_liste_croisant(mylist,4,18);
+    mylist = tri_liste_croisant(mylist,5,59);
+    mylist = tri_liste_croisant(mylist,1,25);
+    mylist = tri_liste_croisant(mylist,3,91);
+    mylist = tri_liste_croisant(mylist,3,56);
+    mylist = tri_liste_croisant(mylist,5,32);
+    mylist = tri_liste_croisant(mylist,1,59);
+    print_all_list(mylist);
 
+
+
+
+/*
     printf("0");
     list* mylist = creer_liste_pour_n(3);
     printf("\n1");
-    print_all_list(mylist);
+    print_all_list(mylist);*/
 
-    /* int choix;
+    /*int choix;
      while (choix !=0) {
          printf("Choisissez une option :\n");
          printf("\n1. Creer une liste\n");
@@ -43,8 +57,8 @@ int main() {
          }
          if (choix == 2) {
              return 0;
-         }*/
-
+         }
+     }*/
 
 
 
