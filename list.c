@@ -36,9 +36,18 @@ creation d'une cellule avec ces valeurs
     dans le cas ou la liste est pas vide
         on ajoute une cellule à la liste et on la fait pointer niveau suivant vers la cellule suivante
 retour de notre liste*/
-
+/*
 list* add_val_to_head(list *mylist, int nb_lvl, int val){
-    cell* mycell = add_val_cell(nb_lvl, val);                  /* voir si demander a l'utilisateur nb_lvl */
+    cell* mycell = add_val_cell(nb_lvl, val);
+    for(int i = 0; i <= mycell->nb_lvl-1; ++i){
+        mycell->next[i] = mylist->heads[i];
+        mylist->heads[i] = mycell;
+    }
+    return mylist;
+}
+*/
+list* add_val_to_head(list *mylist, cell* mycell){
+
     for(int i = 0; i <= mycell->nb_lvl-1; ++i){
         mycell->next[i] = mylist->heads[i];
         mylist->heads[i] = mycell;
@@ -54,7 +63,7 @@ void print_lvl_list(list* mylist, int nb_lvl){
 
     while(tmp != NULL){
         if (tmp->value == tmp2->value){
-            printf(">[ %d|@- ]--",tmp->value);
+            printf(">[ %d|@- ]--",tmp->value+1);
             tmp = tmp->next[nb_lvl];
         }
         else{
@@ -74,45 +83,94 @@ void print_all_list(list* mylist){
     return;
 }
 
-void tri_liste_croisant(list *mylist, cell *newcell){
-
-    int lvl = mylist->max_lvl;
+list* tri_liste_croisant(list *mylist,  int nb_lvl, int val){
+    printf("\npar la nb_lvl = %d / val = %d",nb_lvl,val);
+    cell* mycell = add_val_cell(nb_lvl, val);
+    printf("\nje suis la : mycell_val = %d / mycell_val = ",mycell->value);
+    int lvl = mylist->max_lvl - 1;
     cell **cur = mylist->heads;
-
-    while(lvl >= 0){
-        cell *temp = cur[lvl];
-        if(temp->value < newcell->value){
-            lvl--;
-        }
-        else if(temp->value > newcell->value) {
-                lvl--;
-                cur = temp->next;
-        }
-            else{
-                lvl = -1;
-            }
+    if(mylist->heads[0] == NULL){
+        return add_val_to_head(mylist, mycell);
     }
-    
+    else{
+        while(lvl >= 0) {
+            printf("\nwhaou : lvl = %d",lvl);
+            cell *temp = cur[lvl];
+            printf("\nc'est super ici");
+            if (temp == NULL){
+                if (mycell->nb_lvl - 1 >= lvl) {
+                    mycell->next[lvl] = temp;
+                    cur[lvl] = mycell;
+                }
+                lvl--;
+            }
+            else {
+                if (temp->value >= mycell->value) {
+                    if (lvl <= mycell->nb_lvl - 1 ) {
+                        mycell->next[lvl] = temp;
+                        cur[lvl] = mycell;
+                    }
+                    lvl--;
+                }
+                else {
+                    cur = temp->next;
+                    if (lvl <= mycell->nb_lvl - 1 ) {
+                        mycell->next[lvl] = cur[lvl];
+                        cur[lvl] = mycell;
+                    }
+                    lvl--;
+                }
+            }
+        }
+    }
+    return mylist;
 }
 
 
+int* creerTableau(int taille, int nb_niv) {
+    // Définition d'un tableau initialisé à 0
+    int *tableau = (int*)malloc(taille * sizeof(int));
+    if (tableau == NULL) {
+        printf("Allocation de mémoire a échoué.\n");
+        return tableau;
+    }
+    for (int i = 0; i < taille; ++i) {
+        tableau[i] = 0;
+    }
+
+    int val = 1; // On commence à 1
+    for (int j = 0; j < nb_niv; j++) {
+        for (int k = 1; k <= taille; k++) { // Parcours des indices de 1 à taille inclus
+            if (k % val == 0) {
+                tableau[k - 1]++; // Augmente la valeur de la case correspondante
+            }
+        }
+        val *= 2; // Met à jour val pour la prochaine puissance de 2
+    }
+
+    return tableau;
+}
+
+//CHANGER LA FONCTION DES QUON PEUT TRIER
 list* creer_liste_pour_n(int n){
-    printf("\noui");
     list* mylist = create_empty_list(n);
-    printf("\n3");
 
     int taille_liste = pow(2,n)-1;
     int nb_niv = n;
 
-    printf("\ntaille liste = %d", taille_liste);
-    for(int i = taille_liste; i>0; i--){
+    int *tab = creerTableau(taille_liste, n);
 
-        printf("\nattente numero %d", i);
-
-        mylist = add_val_to_head(mylist,nb_niv,i);
-
-        printf("\neffectué numero %d", i);
+    printf("\n");
+    for(int m =0; m < taille_liste; m++){
+        printf(" %d ", tab[m]);
     }
-    printf("\n4");
+    printf("\n");
+
+    for(int i = 0; i < taille_liste; i++) {
+        int val = tab[i];
+        //cell* mycell = add_val_cell(val,i);
+        //mylist = add_val_to_head(mylist, mycell);
+        tri_liste_croisant(mylist,val,i);
+    }
     return mylist;
 }

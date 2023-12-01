@@ -13,10 +13,11 @@ typedef struct list{
 }list;
 
 list* create_empty_list(int nb_lvl);
-list* add_val_to_head(list *mylist, int nb_lvl, int val);
+//list* add_val_to_head(list *mylist, int nb_lvl, int val);
+list* add_val_to_head(list *mylist, cell* mycell);
 void print_all_list(list* mylist);
 void print_lvl_list(list* mylist, int nb_lvl);
 list* creer_liste_pour_n(int n);
-
+list* tri_liste_croisant(list *mylist,  int nb_lvl, int val);
 
 #endif //PROJET_LIST_H
