@@ -38,7 +38,7 @@ creation d'une cellule avec ces valeurs
 retour de notre liste*/
 
 list* add_val_to_head(list *mylist, int nb_lvl, int val){
-    cell* mycell = add_val_cell(nb_lvl, val);                  /* voir si demander a l'utilisateur nb_lvl */
+    cell* mycell = add_val_cell(nb_lvl, val);                  
     for(int i = 0; i <= mycell->nb_lvl-1; ++i){
         mycell->next[i] = mylist->heads[i];
         mylist->heads[i] = mycell;
