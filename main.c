@@ -2,12 +2,19 @@
 #include "list.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "timer.h"
 
 int main() {
 
     list* mylist = creer_liste_pour_n(3);
     printf("\n");
     print_all_list(mylist);
+
+    for(int i = 0; i<100; i++){
+        int random = rand() % 7;
+        printf("\nValeur actuelle : %d",random);
+        recherche_classique(mylist,random);
+    }
 
     /* int choix;
      while (choix !=0) {
