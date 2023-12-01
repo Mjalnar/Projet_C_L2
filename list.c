@@ -143,25 +143,25 @@ int* creerTableau(int taille, int nb_niv) {
 }
 
 //CHANGER LA FONCTION DES QUON PEUT TRIER
-list* creer_liste_pour_n(int n) {
-    list *mylist = create_empty_list(n);
+list* creer_liste_pour_n(int n){
+    list* mylist = create_empty_list(n);
 
-    int taille_liste = pow(2, n) - 1;
+    int taille_liste = pow(2,n)-1;
     int nb_niv = n;
 
     int *tab = creerTableau(taille_liste, n);
 
     printf("\n");
-    for (int m = 0; m < taille_liste; m++) {
+    for(int m =0; m < taille_liste; m++){
         printf(" %d ", tab[m]);
     }
     printf("\n");
 
-    for (int i = 0; i < taille_liste; i++) {
+    for(int i = 0; i < taille_liste; i++) {
         int val = tab[i];
         //cell* mycell = add_val_cell(val,i);
         //mylist = add_val_to_head(mylist, mycell);
-        tri_liste_croisant(mylist, val, i);
+        tri_liste_croisant(mylist,val,i);
     }
     return mylist;
 }
