@@ -55,7 +55,7 @@ void print_lvl_list(list* mylist, int nb_lvl){
 
     while(tmp != NULL){
         if (tmp->value == tmp2->value){
-            printf(">[ %d|@- ]--",tmp->value);
+            printf(">[ %d|@- ]--",tmp->value+1);
             tmp = tmp->next[nb_lvl];
         }
         else{
