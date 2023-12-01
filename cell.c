@@ -8,6 +8,7 @@
 
 //Fonction qui va creer une cellule à niveau (nb = level) completement vide
 cell* create_empty_cell(int level){
+
     cell* new_cell = (cell*)malloc(sizeof(cell));
     new_cell->next = (cell**)malloc(sizeof(cell*) * level);                                              //création du pointeur "new_cell" de type cell
     new_cell->nb_lvl = level;                                                                           //attribution d'une valeur level// allocation mémoire
@@ -19,6 +20,7 @@ cell* create_empty_cell(int level){
 
 //fonction qui ajoute une valeur (val) à la cellule
 cell* add_val_cell(int level, int val){
+
     cell* mycell = create_empty_cell(level);    //création du pointeur et de la cellule vide
     mycell->value = val;                        //ajout de la valeur à la cellule
     return mycell;                              //retour de la cellule modifié

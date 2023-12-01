@@ -36,18 +36,9 @@ creation d'une cellule avec ces valeurs
     dans le cas ou la liste est pas vide
         on ajoute une cellule à la liste et on la fait pointer niveau suivant vers la cellule suivante
 retour de notre liste*/
-/*
-list* add_val_to_head(list *mylist, int nb_lvl, int val){
-    cell* mycell = add_val_cell(nb_lvl, val);
-    for(int i = 0; i <= mycell->nb_lvl-1; ++i){
-        mycell->next[i] = mylist->heads[i];
-        mylist->heads[i] = mycell;
-    }
-    return mylist;
-}
-*/
-list* add_val_to_head(list *mylist, cell* mycell){
 
+list* add_val_to_head(list *mylist, int nb_lvl, int val){
+    cell* mycell = add_val_cell(nb_lvl, val);                  /* voir si demander a l'utilisateur nb_lvl */
     for(int i = 0; i <= mycell->nb_lvl-1; ++i){
         mycell->next[i] = mylist->heads[i];
         mylist->heads[i] = mycell;
@@ -57,13 +48,14 @@ list* add_val_to_head(list *mylist, cell* mycell){
 
 
 void print_lvl_list(list* mylist, int nb_lvl){
+
     cell * tmp = mylist->heads[nb_lvl];
     cell * tmp2 = mylist->heads[0];
     printf("[list head_%d @-]--",nb_lvl+1);
 
     while(tmp != NULL){
         if (tmp->value == tmp2->value){
-            printf(">[ %d|@- ]--",tmp->value+1);
+            printf(">[ %d|@- ]--",tmp->value);
             tmp = tmp->next[nb_lvl];
         }
         else{
@@ -76,45 +68,44 @@ void print_lvl_list(list* mylist, int nb_lvl){
 
 
 void print_all_list(list* mylist){
+
     cell * tmp;
+
     for (int i = 0; i < mylist->max_lvl; i++){
         print_lvl_list(mylist, i);
     }
     return;
 }
 
-list* tri_liste_croisant(list *mylist,  int nb_lvl, int val){
-    printf("\npar la nb_lvl = %d / val = %d",nb_lvl,val);
-    cell* mycell = add_val_cell(nb_lvl, val);
-    printf("\nje suis la : mycell_val = %d / mycell_val = ",mycell->value);
+list* tri_liste_croisant(list *mylist,  int nb_lvl, int val) {
+    printf("\npar la nb_lvl = %d / val = %d", nb_lvl, val);
+    cell *mycell = add_val_cell(nb_lvl, val);
+    printf("\nje suis la : mycell_val = %d / mycell_val = ", mycell->value);
     int lvl = mylist->max_lvl - 1;
     cell **cur = mylist->heads;
-    if(mylist->heads[0] == NULL){
+    if (mylist->heads[0] == NULL) {
         return add_val_to_head(mylist, mycell);
-    }
-    else{
-        while(lvl >= 0) {
-            printf("\nwhaou : lvl = %d",lvl);
+    } else {
+        while (lvl >= 0) {
+            printf("\nwhaou : lvl = %d", lvl);
             cell *temp = cur[lvl];
             printf("\nc'est super ici");
-            if (temp == NULL){
+            if (temp == NULL) {
                 if (mycell->nb_lvl - 1 >= lvl) {
                     mycell->next[lvl] = temp;
                     cur[lvl] = mycell;
                 }
                 lvl--;
-            }
-            else {
+            } else {
                 if (temp->value >= mycell->value) {
-                    if (lvl <= mycell->nb_lvl - 1 ) {
+                    if (lvl <= mycell->nb_lvl - 1) {
                         mycell->next[lvl] = temp;
                         cur[lvl] = mycell;
                     }
                     lvl--;
-                }
-                else {
+                } else {
                     cur = temp->next;
-                    if (lvl <= mycell->nb_lvl - 1 ) {
+                    if (lvl <= mycell->nb_lvl - 1) {
                         mycell->next[lvl] = cur[lvl];
                         cur[lvl] = mycell;
                     }
