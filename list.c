@@ -78,40 +78,41 @@ void print_all_list(list* mylist){
 }
 
 list* tri_liste_croisant(list *mylist,  int nb_lvl, int val) {
-    //printf("\npar la nb_lvl = %d / val = %d", nb_lvl, val);
+
     cell *mycell = add_val_cell(nb_lvl, val);
-    //printf("\nje suis la : mycell_val = %d / mycell_val = ", mycell->value);
     int lvl = mylist->max_lvl - 1;
     cell **cur = mylist->heads;
+
     if (mylist->heads[0] == NULL) {
         return add_val_to_head(mylist, mycell);
-    } else {
+    }
+    else {
         while (lvl >= 0) {
-            //printf("\nwhaou : lvl = %d", lvl);
             cell *temp = cur[lvl];
-            //printf("\nc'est super ici");
+
             if (temp == NULL) {
                 if (mycell->nb_lvl - 1 >= lvl) {
                     mycell->next[lvl] = temp;
                     cur[lvl] = mycell;
                 }
-                lvl--;
-            } else {
+            }
+            else {
                 if (temp->value >= mycell->value) {
                     if (lvl <= mycell->nb_lvl - 1) {
                         mycell->next[lvl] = temp;
                         cur[lvl] = mycell;
                     }
-                    lvl--;
-                } else {
+                }
+                else {
                     cur = temp->next;
                     if (lvl <= mycell->nb_lvl - 1) {
                         mycell->next[lvl] = cur[lvl];
                         cur[lvl] = mycell;
                     }
-                    lvl--;
+
                 }
             }
+            lvl--;
         }
     }
     return mylist;
@@ -151,11 +152,11 @@ list* creer_liste_pour_n(int n){
 
     int *tab = creerTableau(taille_liste, n);
 
-    printf("\n");
-    for(int m =0; m < taille_liste; m++){
-        printf(" %d ", tab[m]);
-    }
-    printf("\n");
+    //printf("\n");
+    //for(int m =0; m < taille_liste; m++){
+       // printf(" %d ", tab[m]);
+    //}
+    //printf("\n");
 
     for(int i = 0; i < taille_liste; i++) {
         int val = tab[i];
@@ -176,21 +177,37 @@ void recherche_classique(list *mylist, int val) {
 
     while (tmp != NULL) {
         if (tmp->value == val) {
-            printf("\nValeur trouvee a la case : %d", i);
+           // printf(" : 1");
             return;
         }
         tmp = tmp->next[0];
         i++;
     }
 
-    printf("\nValeur introuvable dans la liste.");
+    //printf("\n0");
     return;
 }
 
-void recherche_niveau_haut(list* mylist, int val){
+void recherche_niveau_haut(list* mylist, int val) {
+
+    int lvl = mylist->max_lvl - 1;
+    cell **cur = mylist->heads;
+
     if (mylist->heads[0] == NULL) {
         printf("La liste est vide.\n");
         return;
     }
+    while (lvl >= 0) {
+        cell *temp = cur[lvl];
+        if (temp->value == val){
+            //printf(" : 1");
+            return;
+        }
+        if (temp->value < val) {
+            cur = temp->next;
+        }
+        lvl--;
+    }
+    //printf(": 0");
     return;
 }

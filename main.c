@@ -3,18 +3,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "timer.h"
+#include "math.h"
 
 int main() {
 
-    list* mylist = creer_liste_pour_n(3);
-    printf("\n");
-    print_all_list(mylist);
+        list* mylist = creer_liste_pour_n(7);
 
-    for(int i = 0; i<100; i++){
-        int random = rand() % 7;
-        printf("\nValeur actuelle : %d",random);
-        recherche_classique(mylist,random);
-    }
+        startTimer();
+        for(int i = 0; i<1000000; i++){
+            int random = rand() % (int)pow(2,7)-1;
+           //printf("\n%d",random);
+            recherche_classique(mylist,random);
+        }
+        stopTimer();
+        displayTime();
+
+        startTimer();
+        for(int i = 0; i<1000000; i++){
+            int random = rand() % (int)pow(2,7)-1;
+            //printf("\n%d",random);
+            recherche_niveau_haut(mylist,random);
+        }
+        stopTimer();
+        displayTime();
+
+
+
 
     /* int choix;
      while (choix !=0) {
