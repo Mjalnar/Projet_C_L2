@@ -7,6 +7,20 @@
 #include "agenda.h"
 #include "stdlib.h"
 
+agenda *create_empty_agenda(int nb_lvl){                               /* voir si demander a l'utilisateur nb_lvl */
+    agenda* new_agenda = (agenda *) malloc(sizeof(agenda));
+    new_agenda->max_lvl = nb_lvl;
+    new_agenda->heads = (contact **) malloc(sizeof(contact*) * nb_lvl);
+    for(int i=0; i<nb_lvl; i++){
+        new_agenda->heads[i] = NULL;
+    }
+    return new_agenda;
+}
+
+
+
+
+
 char *scanString(void){
 
     int t_p = 0;
@@ -23,3 +37,4 @@ char *scanString(void){
     mystr[i] = '\0';
     return mystr;
 }
+
