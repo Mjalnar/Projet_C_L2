@@ -169,7 +169,7 @@ list* creer_liste_pour_n(int n){
 
 void recherche_classique(list *mylist, int val) {
     if (mylist->heads[0] == NULL) {
-        printf("La liste est vide.\n");
+        printf("\nLa liste est vide.\n");
         return;
     }
     cell* tmp = mylist->heads[0];
@@ -177,14 +177,13 @@ void recherche_classique(list *mylist, int val) {
 
     while (tmp != NULL) {
         if (tmp->value == val) {
-           // printf(" : 1");
+            //printf("\nRecherche classique : Valeur trouvee (id: %d)", i);
             return;
         }
         tmp = tmp->next[0];
         i++;
     }
-
-    //printf("\n0");
+    //printf("\nRecherche classique : Valeur introuvable.");
     return;
 }
 
@@ -194,13 +193,13 @@ void recherche_niveau_haut(list* mylist, int val) {
     cell **cur = mylist->heads;
 
     if (mylist->heads[0] == NULL) {
-        printf("La liste est vide.\n");
+        printf("\nLa liste est vide.\n");
         return;
     }
     while (lvl >= 0) {
         cell *temp = cur[lvl];
         if (temp->value == val){
-            //printf(" : 1");
+            //printf("\nRecherche multi-niveau : Valeur trouvee\n");
             return;
         }
         if (temp->value < val) {
@@ -208,6 +207,6 @@ void recherche_niveau_haut(list* mylist, int val) {
         }
         lvl--;
     }
-    //printf(": 0");
+    //printf("\nRecherche multi-niveau : Valeur introuvable\n");
     return;
 }
