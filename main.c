@@ -1,13 +1,16 @@
-#include "cell.h"
 #include "list.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "timer.h"
 #include "math.h"
+#include "agenda.h"
 
 int main() {
 
-        list* mylist = creer_liste_pour_n(7);
+    char* test = scanString();
+    printf("%s",test);
+
+       /*list* mylist = creer_liste_pour_n(7);
 
         startTimer();
         for(int i = 0; i<1000000; i++){
@@ -25,7 +28,7 @@ int main() {
             recherche_niveau_haut(mylist,random);
         }
         stopTimer();
-        displayTime();
+        displayTime();*/
 
 
 
