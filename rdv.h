@@ -38,4 +38,6 @@ heure *create_heure();
 duree *create_duree();
 rdv *create_rdv();
 void print_rdv(rdv* myrdv);
+rdv *add_rdv_to_head(rdv* allrdv, rdv* newrdv);
+
 #endif //PROJET_C_RDV_H

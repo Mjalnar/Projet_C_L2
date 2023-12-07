@@ -1,3 +1,16 @@
+/*
+==============================================================================
+Nom du projet         : Projet_C_L2
+Auteurs               : WATINE DAVID, BOUAOU Sohaïb, BAURY Lucas
+Date de création      : 21/10/2023
+Dernière modification : 08/12/2023
+Description           : Projet de deuxième année en école d'ingénieur,
+                        qui consiste à creer un agenda de contact et de
+                        rendez-vous.
+==============================================================================
+*/
+
+
 #include "cell.h"
 #include "list.h"
 #include <stdio.h>
@@ -11,6 +24,12 @@ int main() {
 
     rdv * myrdv = create_rdv();
     print_rdv(myrdv);
+
+
+
+
+
+
 
     /*
     int choix;

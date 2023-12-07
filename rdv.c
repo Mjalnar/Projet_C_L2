@@ -32,15 +32,6 @@ rdv* create_empty_rdv(){
     return new_rdv;
 }
 
-/*
- * creer un rdv (un contacte peut avoir plusieurs rdv)
- * creer un rdv en demander (heure date durer objet etc)
- * int ok
- * str -> scanstring dans agenda
- * les rdv se stock dans les contacts
- * rdv stocké en liste chainee pour pouvoir avoir n rdv
- * mettre rdv en tete
- */
 
 date *create_date(){
     date *new_date = create_empty_date();
@@ -94,10 +85,28 @@ rdv *create_rdv(){
     return new_rdv;
 }
 
-void print_rdv(rdv* myrdv){
-    printf("\nDate : %d/%d/%d", myrdv->date->jour,myrdv->date->mois,myrdv->date->annee);
-    printf("\nHeure : %d:%d", myrdv->heure->h,myrdv->heure->min);
-    printf("\nDuree : %d", myrdv->duree->min);
-    printf("\nObjet : %s", myrdv->objet);
+void print_rdv(rdv* allrdv){
+    if(allrdv == NULL){
+        printf("\nAucun rendez_vous de prevu");
+    }
+
+    int i = 1;
+
+    while(allrdv->next != NULL){
+        printf("\nRendez-vous numero %d", i);
+        printf("\nDate : %d/%d/%d", allrdv->date->jour,allrdv->date->mois,allrdv->date->annee);
+        printf("\nHeure : %d:%d", allrdv->heure->h,allrdv->heure->min);
+        printf("\nDuree : %d:%d", allrdv->duree->h, allrdv->duree->min);
+        printf("\nObjet : %s", allrdv->objet);
+        allrdv = allrdv->next;
+        i++;
+    }
 }
 
+rdv *add_rdv_to_head(rdv* allrdv, rdv* newrdv){
+
+    newrdv->next = allrdv->next;
+    allrdv->next = newrdv;
+
+    return allrdv;
+}
