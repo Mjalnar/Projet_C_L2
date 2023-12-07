@@ -20,7 +20,7 @@ agenda *create_empty_agenda(int nb_lvl){                               /* voir s
 
 
 
-
+/*
 char *scanString(void){
 
     int t_p = 0;
@@ -36,5 +36,34 @@ char *scanString(void){
     }
     mystr[i] = '\0';
     return mystr;
+}*/
+
+char *scanString(void){
+    int t_p = 1; // Commencez avec un espace pour le caractère nul
+    int i = 0;
+    char* mystr = (char*)malloc(t_p * sizeof(char)); // Allouez un caractère pour '\0'
+    char c;
+
+    if (mystr == NULL) {
+        printf("Erreur d'allocation mémoire\n");
+        return NULL;
+    }
+
+    while ((c = getchar()) != '\n' && c != EOF){
+        mystr[i++] = c;
+        t_p++;
+
+        char *temp = (char*)realloc(mystr, t_p * sizeof(char));
+        if (temp == NULL) {
+            printf("Erreur de réallocation mémoire\n");
+            free(mystr);
+            return NULL;
+        }
+        mystr = temp;
+    }
+    mystr[i] = '\0';
+
+    return mystr;
 }
+
 

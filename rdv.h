@@ -33,5 +33,9 @@ date *create_empty_date();
 heure *create_empty_heure();
 duree *create_empty_duree();
 rdv* create_empty_rdv();
-
+date *create_date();
+heure *create_heure();
+duree *create_duree();
+rdv *create_rdv();
+void print_rdv(rdv* myrdv);
 #endif //PROJET_C_RDV_H

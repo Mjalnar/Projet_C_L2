@@ -9,8 +9,8 @@
 
 int main() {
 
-    char* test = scanString();
-    printf("%s",test);
+    rdv * myrdv = create_rdv();
+    print_rdv(myrdv);
 
     /*
     int choix;

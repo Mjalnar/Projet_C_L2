@@ -14,6 +14,6 @@ typedef struct agenda{
 
 
 char *scanString(void);
-agenda *create_empty_list(int nb_lvl);
+agenda *create_empty_agenda(int nb_lvl);
 
 #endif //PROJET_C_AGENDA_H
