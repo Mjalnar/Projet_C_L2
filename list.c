@@ -215,4 +215,3 @@ void recherche_niveau_haut(list* mylist, int val) {
     //printf("\nRecherche multi-niveau : Valeur introuvable\n");
     return;
 }
-
