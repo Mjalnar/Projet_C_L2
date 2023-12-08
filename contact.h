@@ -17,5 +17,7 @@ typedef struct contact{
 
 
 contact* create_empty_contact(int level);
+contact* create_contact();
+void free_contact(contact* my_contact);
 
 #endif //PROJET_C_CONTACT_H

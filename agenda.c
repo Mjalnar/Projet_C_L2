@@ -10,6 +10,7 @@
 
 // Crée un agenda vide avec un nombre spécifié de niveaux
 agenda *create_empty_agenda(int nb_lvl){
+
     agenda* new_agenda = (agenda *) malloc(sizeof(agenda));
 
     if (new_agenda == NULL) {
@@ -194,3 +195,48 @@ contact* search_contact(agenda myagenda, char* smone){
     return NULL;
 }
 
+void print_lvl_agenda(agenda* myagenda, int nb_lvl){
+    // Initialisation des pointeurs temporaires
+    contact * tmp = myagenda->heads[nb_lvl];
+    contact * tmp2 = myagenda->heads[0];
+
+    printf("[list head_%d @-]--", nb_lvl + 1);
+
+    while(tmp != NULL){
+        // Vérification si la valeur de tmp est la même que la valeur de tmp2
+        if (tmp->nom_prenom == tmp2->nom_prenom){
+            printf(">[ %s|@- ]--", tmp->nom_prenom);
+            tmp = tmp->next[nb_lvl]; // Passage à l'élément suivant dans ce niveau
+        }
+        else{
+            printf("-----------");
+        }
+        tmp2 = tmp2->next[0]; // Passage à l'élément suivant dans le niveau de base
+    }
+    printf(">NULL\n");
+}
+
+
+// Affiche tous les niveaux de la liste
+void print_all_agenda(agenda* myagenda){
+    // Parcourt et affiche chaque niveau de la liste
+    for (int i = 0; i < myagenda->max_lvl; i++){
+        print_lvl_agenda(myagenda, i); // Utilise la fonction existante pour afficher un niveau spécifique
+    }
+    return;
+}
+
+void free_agenda(agenda* my_agenda) {
+    // Libère la mémoire des niveaux de contacts dans l'agenda
+    for (int i = 0; i < my_agenda->max_lvl; ++i) {
+        contact* cur_contact = my_agenda->heads[i];
+        while (cur_contact != NULL) {
+            contact* temp = cur_contact->next[i];
+            free_contact(cur_contact);
+            cur_contact = temp;
+        }
+    }
+
+    // Libère la mémoire de l'agenda lui-même
+    free(my_agenda);
+}

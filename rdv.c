@@ -37,11 +37,12 @@ date *create_date(){
     date *new_date = create_empty_date();
 
     printf("\nEntrez la date (JJ/MM/AAAA) : ");
-    char *date_str = scanString();
+    //char *date_str = scanString();
+    fflush(stdout);
+    scanf( "%d/%d/%d", &(new_date->jour), &(new_date->mois), &(new_date->annee));
+    fgetc( stdin );
 
-    sscanf(date_str, "%d/%d/%d", &(new_date->jour), &(new_date->mois), &(new_date->annee));
-
-    free(date_str);
+    //free(date_str);
 
     return new_date;
 }
@@ -50,11 +51,11 @@ heure *create_heure(){
     heure *new_heure = create_empty_heure();
 
     printf("\nEntrez l'heure (HH:MM) : ");
-    char *heure_str = scanString();
-
-    sscanf(heure_str, "%d:%d", &(new_heure->h), &(new_heure->min));
-
-    free(heure_str);
+    //char *heure_str = scanString();
+    fflush(stdout);
+    scanf("%d:%d", &(new_heure->h), &(new_heure->min));
+    fgetc( stdin );
+    //free(heure_str);
 
     return new_heure;
 }
@@ -63,11 +64,11 @@ duree *create_duree(){
     duree *new_duree = create_empty_duree();
 
     printf("\nEntrez la duree (HH:MM) : ");
-    char *duree_str = scanString();
-
-    sscanf(duree_str, "%d:%d", &(new_duree->h), &(new_duree->min));
-
-    free(duree_str);
+    //char *duree_str = scanString();
+    fflush(stdout);
+    scanf("%d:%d", &(new_duree->h), &(new_duree->min));
+    fgetc( stdin );
+    //free(duree_str);
 
     return new_duree;
 }
@@ -93,17 +94,18 @@ void print_rdv(rdv* allrdv){
     if(allrdv == NULL){
         printf("\nAucun rendez_vous de prevu");
     }
+    else{
+        int i = 1;
 
-    int i = 1;
-
-    while(allrdv->next != NULL){
-        printf("\nRendez-vous numero %d", i);
-        printf("\nDate : %d/%d/%d", allrdv->date->jour,allrdv->date->mois,allrdv->date->annee);
-        printf("\nHeure : %d:%d", allrdv->heure->h,allrdv->heure->min);
-        printf("\nDuree : %d:%d", allrdv->duree->h, allrdv->duree->min);
-        printf("\nObjet : %s", allrdv->objet);
-        allrdv = allrdv->next;
-        i++;
+            do{
+                allrdv = allrdv->next;
+                printf("\nRendez-vous numero %d", i);
+                printf("\nDate : %d/%d/%d", allrdv->date->jour,allrdv->date->mois,allrdv->date->annee);
+                printf("\nHeure : %d:%d", allrdv->heure->h,allrdv->heure->min);
+                printf("\nDuree : %d:%d", allrdv->duree->h, allrdv->duree->min);
+                printf("\nObjet : %s \n", allrdv->objet);
+                i++;
+            }while(allrdv->next != NULL);
     }
 }
 

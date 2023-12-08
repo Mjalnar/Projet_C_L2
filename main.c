@@ -6,7 +6,7 @@ Date de création      : 21/10/2023
 Dernière modification : 08/12/2023
 Description           : Projet de deuxième année en école d'ingénieur,
                         qui consiste à creer un agenda de contact et de
-                        rendez-vous.
+                        rendez-vous à partir de liste à niveaux.
 ==============================================================================
 */
 

@@ -141,7 +141,6 @@ int* creerTableau(int taille, int nb_niv) {
         }
         val *= 2; // Met à jour val pour la prochaine puissance de 2
     }
-
     return tableau;
 }
 

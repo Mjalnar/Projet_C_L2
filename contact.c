@@ -3,7 +3,9 @@
 //
 
 #include "contact.h"
-#include "stdlib.h"
+#include <stdlib.h>
+#include "stdio.h"
+#include "agenda.h"
 
 // Crée un contact vide avec un nombre spécifié de niveaux
 contact* create_empty_contact(int level){
@@ -46,6 +48,7 @@ contact* create_contact(){
     printf("\nNom Prenom : ");
     fflush(stdout);
     new_contact->nom_prenom = scanString();
+    fgetc( stdin );
 
     // Demande à l'utilisateur s'il souhaite ajouter un rendez-vous au contact
     printf("Voulez-vous ajouter un nouveau rendez-vous ?\n1. Oui\n2. Non\n");
