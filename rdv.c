@@ -80,10 +80,14 @@ rdv *create_rdv(){
     new_rdv->duree = create_duree();
 
     printf("\nEntrez l'objet du rendez-vous : ");
+    fflush(stdout);
     new_rdv->objet = scanString();
+    fgetc( stdin );
 
     return new_rdv;
 }
+
+//===================================================================================================================
 
 void print_rdv(rdv* allrdv){
     if(allrdv == NULL){
@@ -109,4 +113,15 @@ rdv *add_rdv_to_head(rdv* allrdv, rdv* newrdv){
     allrdv->next = newrdv;
 
     return allrdv;
+}
+
+void free_rdv(rdv* my_rdv) {
+    // Libère la mémoire du rendez-vous lui-même
+    free(my_rdv->date);
+    free(my_rdv->heure);
+    free(my_rdv->duree);
+    free(my_rdv->objet);
+
+    // Libère la mémoire du rendez-vous
+    free(my_rdv);
 }
