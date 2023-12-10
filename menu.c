@@ -96,11 +96,13 @@ void menu_partie_2(){
                     startTimer();
                     recherche_classique(mylist,val);
                     stopTimer();
+                    printf("\nRecherche classique : ");
                     displayTime();
 
                     startTimer();
                     recherche_niveau_haut(mylist,val);
                     stopTimer();
+                    printf("\nRecherche à partir du plus haut niveau : ");
                     displayTime();
                 }
 
@@ -115,6 +117,7 @@ void menu_partie_2(){
                         recherche_classique(mylist,random);
                     }
                     stopTimer();
+                    printf("\nRecherche classique : ");
                     displayTime();
 
                     startTimer();
@@ -123,6 +126,7 @@ void menu_partie_2(){
                         recherche_niveau_haut(mylist,random);
                     }
                     stopTimer();
+                    printf("\nRecherche a partir du plus haut niveau : ");
                     displayTime();
                 }
                 if (choix == 3) {
@@ -153,24 +157,18 @@ void menu_partie_3(){
         if (choix == 1) {
             while (choix != 0) {
 
-                printf("\n2. Entrer simplement un rendez-vous");
-                printf("\n3. Ajouter un contact");
-                printf("\n4. Afficher agenda");
+                printf("\n2. Ajouter un contact");
+                printf("\n3. Afficher agenda");
                 printf("\n0. Quitter\n");
                 scanf(" %d", &choix);
 
-                if(choix == 2){
-                    rdv* myrdv = create_rdv();
-                    print_rdv(myrdv);
-                    printf("ui");
-                    break;
-                }
-                if (choix == 3){
+
+                if (choix == 2){
                     contact* mycontact = create_contact();
                     fflush(stdout);
 
                     myagenda = tri_new_contact(myagenda, mycontact);
-                    printf("Afficher rdv? \n5. oui \n6. non \nchoix : ");
+                    printf("Afficher rdv? \n4. oui \n5. non \nchoix : ");
 
                     fflush(stdout);
                     scanf(" %d" , &choix);
@@ -178,15 +176,15 @@ void menu_partie_3(){
 
                     //contact* mycontact = myagenda->heads[0];
 
-                    if(choix == 5){
+                    if(choix == 4){
                         print_rdv(mycontact->rdv);
                     }
-                    if (choix == 6){
+                    if (choix == 5){
                         continue;
                     }
                     //break;
                 }
-                if (choix == 4){
+                if (choix == 3){
                     print_all_agenda(myagenda);
                 }
             }

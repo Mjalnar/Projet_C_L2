@@ -123,7 +123,7 @@ int* creerTableau(int taille, int nb_niv) {
     // Allocation de mémoire pour un tableau d'entiers initialisé à zéro
     int *tableau = (int*)malloc(taille * sizeof(int));
     if (tableau == NULL) {
-        printf("Allocation de mémoire a échoué.\n");
+        printf("Allocation mémoire echoue.\n");
         return tableau;
     }
 

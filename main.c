@@ -22,28 +22,6 @@ Description           : Projet de deuxième année en école d'ingénieur,
 
 int main() {
 
-    //rdv * myrdv = create_rdv();
-    //print_rdv(myrdv);
-/*
-    agenda* myagenda = create_empty_agenda(4);
-    myagenda = tri_new_contact(myagenda);
-    printf("quelle contact cherchez-vous");
-    fflush(stdout);
-    char *nom = scanString();
-    fgetc( stdin );
-    contact* mycontact = search_contact(*myagenda, nom);
-    print_rdv(mycontact->rdv);
-    //myagenda = tri_new_contact(myagenda);
-    //myagenda = tri_new_contact(myagenda);
-
-    print_all_agenda(myagenda);
-    free_agenda(myagenda);
-*/
-
-
-
-
-
     int choix;
     printf("Choisisez votre partie : ");
     scanf(" %d", &choix);

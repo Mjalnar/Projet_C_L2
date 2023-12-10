@@ -45,81 +45,6 @@ agenda* add_val_to_head_agenda(agenda *mylist, contact * mycontact){
     return mylist;
 }
 
-/*
-agenda* tri_new_contact(agenda* myagenda){
-    contact *mycontact = create_contact();
-    int lvl = myagenda->max_lvl - 1;
-    contact **cur = myagenda->heads;
-    int c = 0;
-
-    if (myagenda->heads[0] == NULL || mycontact->nom_prenom[0] < myagenda->heads[0]->nom_prenom[0]) {
-        return add_val_to_head_agenda(myagenda, mycontact);
-    }
-    else {
-        while (lvl >= 0) {
-            contact *temp = cur[lvl];
-
-            if(mycontact->nom_prenom[c] == temp->nom_prenom[c]){
-                lvl--;
-                c++;
-            }
-
-            if (temp == NULL) {
-                if (mycontact->nb_lvl - 1 >= lvl) {
-                    mycontact->next[lvl] = temp;
-                    cur[lvl] = mycontact;
-                }
-            }
-            else {
-                if (temp->nom_prenom[0] > mycontact->nom_prenom[0]) {
-
-                    mycell->next[lvl] = temp;
-                    cur[lvl] = mycell;
-
-                }
-                else{
-                    if(temp->nom_prenom[0] < mycontact->nom_prenom[0]) {
-                        cur = temp->next;
-
-                        mycell->next[lvl] = cur[lvl];
-                        cur[lvl] = mycell;
-                    }
-                }
-
-            }
-        }
-        lvl--;
-    }
-    return myagenda;
-}
-*/
-/*
-// Fonction de tri des contacts dans l'agenda basée sur les premières lettres des noms
-agenda* tri_new_contact(agenda* myagenda) {
-    contact *mycontact = create_contact(); // Crée un nouveau contact
-
-    // Parcourt les niveaux (du plus élevé au plus bas)
-    for (int lvl = myagenda->max_lvl - 1; lvl >= 0; lvl--) {
-        contact **cur = myagenda->heads;
-
-        // Si l'agenda est vide ou le nom du nouveau contact est avant la première lettre du premier contact
-        if (myagenda->heads[0] == NULL || mycontact->nom_prenom[lvl] < myagenda->heads[0]->nom_prenom[lvl]) {
-            return add_val_to_head_agenda(myagenda, mycontact); // Ajoute le nouveau contact à la tête de l'agenda
-        } else {
-            while (cur[lvl] != NULL) {
-                if (mycontact->nom_prenom[lvl] == cur[lvl]->nom_prenom[lvl]) {
-                    lvl--; // Si les lettres sont identiques, passe au niveau inférieur
-                } else {
-                    mycontact->next[lvl] = cur[lvl];
-                    cur[lvl] = mycontact;
-                    break; // Chaîne les contacts si les lettres sont différentes et sort de la boucle
-                }
-            }
-        }
-    }
-    return myagenda;
-}*/
-
 
 agenda* tri_new_contact(agenda* myagenda, contact *new_contact) {
     int lvl;
@@ -129,7 +54,8 @@ agenda* tri_new_contact(agenda* myagenda, contact *new_contact) {
 
         if (myagenda->heads[0] == NULL || new_contact->nom_prenom[lvl] < myagenda->heads[0]->nom_prenom[lvl]) {
             return add_val_to_head_agenda(myagenda, new_contact);
-        } else {
+        }
+        else {
             while (cur[lvl] != NULL) {
                 if (new_contact->nom_prenom[lvl] == cur[lvl]->nom_prenom[lvl]) {
                     lvl--;
@@ -162,7 +88,8 @@ char *scanString(void){
     mystr[i] = '\0'; // Ajoute le caractère de fin de chaîne
     return mystr;
 }
-//===============================================================================================================================
+
+//version 1
 /*
 // Fonction de recherche d'un contact dans l'agenda en utilisant le nom/prénom
 contact* search_contact(agenda myagenda, char* smone){
@@ -180,6 +107,7 @@ contact* search_contact(agenda myagenda, char* smone){
 }
 */
 
+//version 2
 // Fonction de recherche d'un contact dans l'agenda en utilisant le nom/prénom
 contact* search_contact(agenda myagenda, char* smone){
     contact* cur = myagenda.heads[0];
